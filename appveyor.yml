@@ -37,6 +37,7 @@ install:
   - cd openssl-%OPENSSL_VER%
   - patch -p1 < ..\openssl-%OPENSSL_VER%.patch
   - cd ..
+  - patch -p0 < build-script.patch
 
 build_script:
   - build-openssl-%OPENSSL_VER%.bat build all
