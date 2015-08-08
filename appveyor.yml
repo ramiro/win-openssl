@@ -13,23 +13,23 @@ environment:
     VS_VERSION: "2015"
 
   matrix:
-  - PLAT: Win32
-    WIDTH: 32
+  - PLAT: x86
+  - LINK: static
 
-  - PLAT: Win64
-    WIDTH: 64
+  - PLAT: x64
+  - LINK: static
 
-  - PLAT: Win32
-    WIDTH: 32
+  - PLAT: x86
+  - LINK: shared
 
-  - PLAT: Win64
-    WIDTH: 64
+  - PLAT: x64
+  - LINK: shared
 
 configuration:
   - release
+  - debug
 
 install:
-  - dir /S c:\perl
   - appveyor DownloadFile ftp://ftp.openssl.org/source/openssl-%OPENSSL_VER%.tar.gz
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/build-openssl-%OPENSSL_VER%.bat
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/openssl-%OPENSSL_VER%.patch
@@ -41,6 +41,6 @@ install:
   - patch -p0 < build-script.patch
 
 build_script:
-  - build-openssl-%OPENSSL_VER%.bat build all
+  - build-openssl-%OPENSSL_VER%.bat build %PLAT% %LINK% %CONFIGURATION%
 
 test: off
