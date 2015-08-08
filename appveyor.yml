@@ -33,7 +33,8 @@ install:
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/build-openssl-%OPENSSL_VER%.bat
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/openssl-%OPENSSL_VER%.patch
   - 7z x openssl-%OPENSSL_VER%.tar.gz
-  - cd openssl-%OPENSSL_VER%.tar
+  - 7z x openssl-%OPENSSL_VER%.tar
+  - cd openssl-%OPENSSL_VER%
   - type ..\openssl-%OPENSSL_VER%.patch | patch -p1 -
 
 build_script:
