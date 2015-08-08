@@ -1,5 +1,5 @@
 --- build-openssl-1.0.2d.bat	2015-08-08 18:54:03.455561224 -0300
-+++ build-openssl-1.0.2d.bat.patched	2015-08-08 19:03:00.399550267 -0300
++++ build-openssl-1.0.2d.bat.patched	2015-08-08 19:15:20.547535164 -0300
 @@ -33,13 +33,13 @@
  ::
  :: Set the version of Visual Studio. This will just add a suffix to the string
@@ -37,3 +37,34 @@
  
  rem ========================================================================================================
  rem == PLEASE DO NOT EDIT BELOW THIS LINE
+@@ -554,14 +554,6 @@
+ 
+ :buildall
+ 
+-IF NOT EXIST "!PERL_ROOT!\perlenv.bat" (
+-	ECHO.
+-	call :exitB "Make sure !PERL_ROOT! points to a valid Perl root directory. (perlenv.bat is missing)"
+-	goto :eof
+-)
+-
+-call !PERL_ROOT!\perlenv.bat
+-
+ for %%a in (x86 x64) do (
+ 	for %%l in (shared static) do (
+ 		for %%b in (debug release) do (
+@@ -588,15 +580,6 @@
+ 	SET BIT_STR=64
+ )
+ 
+-
+-IF NOT EXIST "!PERL_ROOT!\perlenv.bat" (
+-	ECHO.
+-	call :exitB "Make sure !PERL_ROOT! points to a valid Perl root directory. (perlenv.bat is missing)"
+-	goto :eof
+-)
+-
+-call !PERL_ROOT!\perlenv.bat
+-
+ echo:
+ echo Building OpenSSL Library [!__ARCH!] [!__LINK!] [!__BUILD!]
+ echo:
