@@ -1,0 +1,40 @@
+version: "{build}"
+
+shallow_clone: true
+
+environment:
+
+  global:
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script intepreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    WITH_COMPILER: "cmd /E:ON /V:ON /C ..\\misc\\run_with_compiler.cmd"
+    OPENSSL_VER: 1.0.2d
+    VS_VERSION: "2015"
+
+  matrix:
+  - PLAT: Win32
+    WIDTH: 32
+
+  - PLAT: Win64
+    WIDTH: 64
+
+  - PLAT: Win32
+    WIDTH: 32
+
+  - PLAT: Win64
+    WIDTH: 64
+
+configuration:
+  - release
+
+install:
+  - appveyor DownloadFile ftp://ftp.openssl.org/source/openssl-%OPENSSL_VER%.tar.gz
+  - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/build-openssl-%OPENSSL_VER%.bat
+  - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/openssl-%OPENSSL_VER%.patch
+  - 7z x openssl-%OPENSSL_VER%.tar.gz
+  - cd openssl-%OPENSSL_VER%.tar
+  - type ..\openssl-%OPENSSL_VER%.patch | patch -p1 -
+
+build_script:
+  - build-openssl-%OPENSSL_VER%.bat build all
