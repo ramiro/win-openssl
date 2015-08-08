@@ -29,6 +29,7 @@ configuration:
   - release
 
 install:
+  - dir /S c:\perl
   - appveyor DownloadFile ftp://ftp.openssl.org/source/openssl-%OPENSSL_VER%.tar.gz
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/build-openssl-%OPENSSL_VER%.bat
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/openssl-%OPENSSL_VER%.patch
@@ -41,3 +42,5 @@ install:
 
 build_script:
   - build-openssl-%OPENSSL_VER%.bat build all
+
+test: off
