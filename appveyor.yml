@@ -14,16 +14,16 @@ environment:
 
   matrix:
   - PLAT: x86
-  - LINK: static
+    LINK: static
 
   - PLAT: x64
-  - LINK: static
+    LINK: static
 
   - PLAT: x86
-  - LINK: shared
+    LINK: shared
 
   - PLAT: x64
-  - LINK: shared
+    LINK: shared
 
 configuration:
   - release
