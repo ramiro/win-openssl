@@ -14,16 +14,16 @@ environment:
 
   matrix:
   - PLAT: x86
-    LINK: static
+    LINKAGE: static
 
   - PLAT: x64
-    LINK: static
+    LINKAGE: static
 
   - PLAT: x86
-    LINK: shared
+    LINKAGE: shared
 
   - PLAT: x64
-    LINK: shared
+    LINKAGE: shared
 
 configuration:
   - release
@@ -41,6 +41,6 @@ install:
   - patch -p0 < build-script.patch
 
 build_script:
-  - build-openssl-%OPENSSL_VER%.bat build %PLAT% %LINK% %CONFIGURATION%
+  - build-openssl-%OPENSSL_VER%.bat build %PLAT% %LINKAGE% %CONFIGURATION%
 
 test: off
