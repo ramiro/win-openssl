@@ -12,22 +12,22 @@ environment:
     OPENSSL_VER: 1.0.2d
     VS_VERSION: "2015"
 
-  matrix:
-  - PLAT: x86
-    LINKAGE: static
+  #matrix:
+  #- PLAT: x86
+  #  LINKAGE: static
+  #
+  #- PLAT: x64
+  #  LINKAGE: static
+  #
+  #- PLAT: x86
+  #  LINKAGE: shared
+  #
+  #- PLAT: x64
+  #  LINKAGE: shared
 
-  - PLAT: x64
-    LINKAGE: static
-
-  - PLAT: x86
-    LINKAGE: shared
-
-  - PLAT: x64
-    LINKAGE: shared
-
-configuration:
-  - release
-  - debug
+#configuration:
+#  - release
+#  - debug
 
 install:
   - appveyor DownloadFile ftp://ftp.openssl.org/source/openssl-%OPENSSL_VER%.tar.gz
@@ -41,8 +41,10 @@ install:
   - patch -p0 < build-script.patch
 
 build_script:
-  - build-openssl-%OPENSSL_VER%.bat build %PLAT% %LINKAGE% %CONFIGURATION%
-  - build-openssl-%OPENSSL_VER%.bat package %PLAT% %LINKAGE%
+  #- build-openssl-%OPENSSL_VER%.bat build %PLAT% %LINKAGE% %CONFIGURATION%
+  #- build-openssl-%OPENSSL_VER%.bat package %PLAT% %LINKAGE%
+  - build-openssl-%OPENSSL_VER%.bat build all
+  - build-openssl-%OPENSSL_VER%.bat package all
 
 test: off
 
