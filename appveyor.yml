@@ -42,5 +42,9 @@ install:
 
 build_script:
   - build-openssl-%OPENSSL_VER%.bat build %PLAT% %LINKAGE% %CONFIGURATION%
+  - build-openssl-%OPENSSL_VER%.bat package %PLAT% %LINKAGE%
 
 test: off
+
+#artifacts:
+#        - path: openssl-dist-%OPENSSL_VER%-vs2015
