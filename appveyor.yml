@@ -31,8 +31,6 @@ environment:
 
 install:
   - C:\cygwin\setup-x86.exe -qnNdO -R C:/cygwin -s http://cygwin.mirror.constant.com -l C:/cygwin/var/cache/setup -P p7zip
-  #- C:\cygwin\setup-x86.exe -qnNdO -R C:/cygwin -s http://cygwin.mirror.constant.com -l C:/cygwin/var/cache/setup -P md5sum
-  #- C:\cygwin\setup-x86.exe -qnNdO -R C:/cygwin -s http://cygwin.mirror.constant.com -l C:/cygwin/var/cache/setup -P patch
   - appveyor DownloadFile ftp://ftp.openssl.org/source/openssl-%OPENSSL_VER%.tar.gz
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/build-openssl-%OPENSSL_VER%.bat
   - appveyor DownloadFile http://www.npcglib.org/~stathis/downloads/openssl-%OPENSSL_VER%.patch
@@ -51,5 +49,5 @@ build_script:
 
 test: off
 
-#artifacts:
-#  - path: openssl-dist-%OPENSSL_VER%-vs2015
+artifacts:
+  - path: openssl-%OPENSSL_VER%-vs2015.7z
