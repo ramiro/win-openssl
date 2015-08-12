@@ -46,6 +46,7 @@ build_script:
   #- build-openssl-%OPENSSL_VER%.bat package %PLAT% %LINKAGE%
   - build-openssl-%OPENSSL_VER%.bat build all
   - build-openssl-%OPENSSL_VER%.bat package all
+  - dir /S *.7z
 
 test: off
 
